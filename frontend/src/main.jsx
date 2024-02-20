@@ -6,6 +6,7 @@ import { ConfigProvider, theme } from "antd";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Register from "./pages/Register.jsx";
 import Login from "./pages/Login.jsx";
+import Notfound from "./pages/NotFound.jsx";
 import { ClerkProvider } from "@clerk/clerk-react";
 import Home from "./pages/Home.jsx";
 import { dark } from "@clerk/themes";
@@ -27,10 +28,10 @@ const router = createBrowserRouter([
     path: "/add-review",
     element: <App />,
   },
-  // {
-  //   path: "*",
-  //   element: <Notfound />,
-  // },
+  {
+    path: "*",
+    element: <Notfound />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
