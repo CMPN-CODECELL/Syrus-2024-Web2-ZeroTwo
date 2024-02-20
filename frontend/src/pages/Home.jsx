@@ -3,7 +3,7 @@ import React from "react";
 const Home = () => {
   return (
     <div>
-      {/* <div className="navbar bg-base-300 ">
+      {/* <div className="navbar bg-base-200 ">
         <div className="flex-1">
           <a className="btn btn-ghost text-xl">daisyUI</a>
         </div>
@@ -46,21 +46,33 @@ const Home = () => {
           </div>
         </div>
       </div> */}
+      <div className="navbar bg-base-200 ">
+        <div className="flex-1">
+          <a className="btn btn-ghost text-4xl font-['penna']">GoTrip</a>
+        </div>
+        <div className="flex-none">
+          <button className="btn bg-[#fb923c] mx-2">Sign In</button>
+          <button className="btn btn-neutral mx-2">Glass button</button>
+
+        </div>
+      </div>
       <div className="hero min-h-screen bg-base-200">
-        <div className="hero-content flex-col lg:flex-row">
+        <div className="hero-content flex-col lg:flex-row mx-16">
           <img
-            src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
+            src="https://imgs.search.brave.com/Rv2Q8Fcd6oPVngifHjRiA_iQVtQXyUh-vWd2R4_qZBA/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1waG90by90/cmF2ZWxpbmctY29u/Y2VwdC13aXRoLWxh/bmRtYXJrc18yMy0y/MTQ5MTUzMjYxLmpw/Zz9zaXplPTYyNiZl/eHQ9anBn"
             className="max-w-sm rounded-lg shadow-2xl"
           />
-          <div>
-            <h1 className="text-5xl font-bold">Box Office News!</h1>
-            <p className="py-6">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
+          <div className="mx-8">
+            <h1 className="text-5xl font-bold">Travel with Us!</h1>
+            <p className="py-6 font-serif text-5xl">
+              Make traveling easy and enjoyable by using our services.
             </p>
-            <button className="btn glass mx-2">Glass button</button>
-            <button className="btn btn-primary mx-2">Get Started</button>
+            <div>
+              <button className="btn bg-blue-200 mx-2 text-1xl w-1/2">
+                Find the Best Spots!
+              </button>
+              <button className="btn btn-neutral">Start Planning</button>
+            </div>
           </div>
         </div>
       </div>
