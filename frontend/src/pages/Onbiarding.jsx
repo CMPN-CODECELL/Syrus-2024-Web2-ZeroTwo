@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import { useUser } from "@clerk/clerk-react";
 import axios from "axios";
+import Lottie from "react-lottie";
+import animationData from "../assets/Ani.json";
 
 const Onbiarding = () => {
   const { user } = useUser();
@@ -22,12 +24,127 @@ const Onbiarding = () => {
   };
 
   console.log("interests", interests);
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
 
   return (
     <div>
       <Navbar />
-      <div className=" w-[90%] container mx-auto">
-        <h1 className="text-4xl font-bold my-8">Welcome to GoTrips</h1>
+      <div className=" w-[80%] flex justify-center items-center gap-44 container mx-auto">
+        <Lottie
+          options={defaultOptions}
+          height={500}
+          width={500}
+          className="left-container bg-y"
+        />
+        <div
+          className="right-container w-[60%]
+           p-8
+          flex flex-col justify-center items-start
+    "
+        >
+          <h1 className="text-4xl font-bold my-8 pb-4 ">Welcome to GoTrips</h1>
+          <div className="">
+            <p className="text-xl my-4">What is your age?</p>
+            <div className="flex flex-wrap">
+              <input
+                type="number"
+                placeholder="18"
+                className="input input-bordered w-full max-w-xs"
+              />
+            </div>
+          </div>
+
+          <div className="second mt-8">
+            <p className="text-xl my-4">What are your interests?</p>
+            <div className="flex flex-wrap">
+              <button
+                onClick={() => {
+                  if (interests.includes("sports")) {
+                    setInterests(
+                      interests.filter((interest) => interest !== "sports")
+                    );
+                  } else {
+                    setInterests([...interests, "sports"]);
+                  }
+                }}
+                className={`btn btn-outline m-2 ${
+                  interests.includes("sports") ? "btn-active" : ""
+                }`}
+              >
+                Sports
+              </button>
+              <button
+                onClick={() => {
+                  if (interests.includes("music")) {
+                    setInterests(
+                      interests.filter((interest) => interest !== "music")
+                    );
+                  } else {
+                    setInterests([...interests, "music"]);
+                  }
+                }}
+                className={`btn btn-outline m-2 ${
+                  interests.includes("music") ? "btn-active" : ""
+                }`}
+              >
+                Music
+              </button>
+              <button
+                onClick={() => {
+                  if (interests.includes("travel")) {
+                    setInterests(
+                      interests.filter((interest) => interest !== "travel")
+                    );
+                  } else {
+                    setInterests([...interests, "travel"]);
+                  }
+                }}
+                className={`btn btn-outline m-2 ${
+                  interests.includes("travel") ? "btn-active" : ""
+                }`}
+              >
+                Travel
+              </button>
+              <button
+                onClick={() => {
+                  if (interests.includes("food")) {
+                    setInterests(
+                      interests.filter((interest) => interest !== "food")
+                    );
+                  } else {
+                    setInterests([...interests, "food"]);
+                  }
+                }}
+                className={`btn btn-outline m-2 ${
+                  interests.includes("food") ? "btn-active" : ""
+                }`}
+              >
+                Food
+              </button>
+            </div>
+            <button onClick={saveUserToDb} className="mt-12 w-[60%] btn my-8">
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Onbiarding;
+{
+  /* 
+
+<h1 className="text-4xl font-bold my-8">Welcome to GoTrips</h1>
         <div className="">
           <p className="text-xl my-4">What is your age?</p>
           <div className="flex flex-wrap">
@@ -41,7 +158,7 @@ const Onbiarding = () => {
                   setInterests([...interests, "sports"]);
                 }
               }}
-              className={`btn btn-ghost m-2 ${
+              className={`btn btn-outline m-2 ${
                 interests.includes("sports") ? "btn-active" : ""
               }`}
             >
@@ -57,7 +174,7 @@ const Onbiarding = () => {
                   setInterests([...interests, "music"]);
                 }
               }}
-              className={`btn btn-ghost m-2 ${
+              className={`btn btn-outline m-2 ${
                 interests.includes("music") ? "btn-active" : ""
               }`}
             >
@@ -73,7 +190,7 @@ const Onbiarding = () => {
                   setInterests([...interests, "travel"]);
                 }
               }}
-              className={`btn btn-ghost m-2 ${
+              className={`btn btn-outline m-2 ${
                 interests.includes("travel") ? "btn-active" : ""
               }`}
             >
@@ -89,7 +206,7 @@ const Onbiarding = () => {
                   setInterests([...interests, "food"]);
                 }
               }}
-              className={`btn btn-ghost m-2 ${
+              className={`btn btn-outline m-2 ${
                 interests.includes("food") ? "btn-active" : ""
               }`}
             >
@@ -111,7 +228,7 @@ const Onbiarding = () => {
                   setInterests([...interests, "sports"]);
                 }
               }}
-              className={`btn btn-ghost m-2 ${
+              className={`btn btn-outline m-2 ${
                 interests.includes("sports") ? "btn-active" : ""
               }`}
             >
@@ -127,7 +244,7 @@ const Onbiarding = () => {
                   setInterests([...interests, "music"]);
                 }
               }}
-              className={`btn btn-ghost m-2 ${
+              className={`btn btn-outline m-2 ${
                 interests.includes("music") ? "btn-active" : ""
               }`}
             >
@@ -171,9 +288,5 @@ const Onbiarding = () => {
         <button onClick={saveUserToDb} className="btn btn-primary my-8">
           Save
         </button>
-      </div>
-    </div>
-  );
-};
-
-export default Onbiarding;
+      </div> */
+}

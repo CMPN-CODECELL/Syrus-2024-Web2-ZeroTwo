@@ -20,6 +20,7 @@ export default {
       "aqua",
       "luxury",
       "lofi",
+      "acid",
     ],
   },
 };
