@@ -9,6 +9,7 @@ import Login from "./pages/Login.jsx";
 import { ClerkProvider } from "@clerk/clerk-react";
 import Home from "./pages/Home.jsx";
 import { dark } from "@clerk/themes";
+import Onbiarding from "./pages/Onbiarding.jsx";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
   {
     path: "/add-review",
     element: <App />,
+  },
+  {
+    path: "/onboarding",
+    element: <Onbiarding />,
   },
   // {
   //   path: "*",

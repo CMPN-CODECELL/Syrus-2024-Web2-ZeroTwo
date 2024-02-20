@@ -20,7 +20,7 @@ const Navbar = () => {
             <div className="w-8 rounded-full">
               <img
                 alt="Tailwind CSS Navbar component"
-                src={user.profileImageUrl}
+                //src={user.profileImageUrl}
               />
             </div>
           </div>
