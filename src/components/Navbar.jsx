@@ -3,7 +3,6 @@ import React from "react";
 
 const Navbar = () => {
   const { user } = useUser();
-  console.log("user", user);
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
@@ -20,7 +19,7 @@ const Navbar = () => {
             <div className="w-8 rounded-full">
               <img
                 alt="Tailwind CSS Navbar component"
-                src={user.profileImageUrl}
+                src={user?.profileImageUrl}
               />
             </div>
           </div>

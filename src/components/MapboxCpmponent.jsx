@@ -17,6 +17,10 @@ mapboxgl.accessToken =
   "pk.eyJ1IjoiYXlhYW56YXZlcmkiLCJhIjoiY2ttZHVwazJvMm95YzJvcXM3ZTdta21rZSJ9.WMpQsXd5ur2gP8kFjpBo8g";
 
 class MapboxComponent extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   componentDidMount() {
     const map = new mapboxgl.Map({
       container: "map",
@@ -32,9 +36,8 @@ class MapboxComponent extends React.Component {
     });
 
     // Directions
-    map.addControl(directions, "top-left");
+    map.addControl(directions, "bottom-left");
 
-   
     // map.on("load", function () {
     //   directions.setOrigin("Toronto, Ontario"); // On load, set the origin to "Toronto, Ontario".
     //   directions.setDestination("Montreal, Quebec"); // On load, set the destination to "Montreal, Quebec".
@@ -51,10 +54,12 @@ class MapboxComponent extends React.Component {
       //   'Route lengths',
       //   routes.map((r) => r.distance)
       //);
-      console.log(directions.getOrigin());
-      console.log(directions.getDestination());
-
-      console.log(directions.getWaypoints());
+      this.props.setPath(routes[0].distance);
+      this.props.setTime(routes[0].duration);
+      this.props.setSource(directions.getOrigin().geometry.coordinates);
+      this.props.setDestination(
+        directions.getDestination().geometry.coordinates
+      );
     });
 
     // Styles
