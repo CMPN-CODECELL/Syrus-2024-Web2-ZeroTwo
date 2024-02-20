@@ -6,6 +6,13 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    age: {
+      type: Number,
+      default: 18,
+    },
+    sex: {
+      type: String,
+    },
     isAdmin: {
       type: Boolean,
       default: false,
@@ -19,6 +26,20 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
       unique: true,
+    },
+    clerkId: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    interests: {
+      type: [String],
+      default: [],
+    },
+    pastTrips: {
+      type: [String],
+
+      default: [],
     },
   },
   {
