@@ -2,18 +2,21 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import MapboxComponent from "../components/MapboxCpmponent";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const GetPath = () => {
   const [source, setSource] = useState([]);
   const [destination, setDestination] = useState([]);
   const [path, setPath] = useState([]);
   const [time, setTime] = useState([0]);
+  const navigate = useNavigate();
+  const [polyPoints, setPolyPoints] = useState([]);
 
   const [sourceCity, setSourceCity] = useState("");
   const [destinationCity, setDestinationCity] = useState("");
   const [cordinates, setCordinates] = useState([]);
-  const [restaurents, setRestaurents] = useState([]);
   const [attractions, setAttractions] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getLocationName(source[1], source[0], setSourceCity);
@@ -38,24 +41,37 @@ const GetPath = () => {
     const data = await response.json();
     console.log("data", data.routes[0].geometry.coordinates.length);
 
+    const poly = data.routes[0].geometry.coordinates.filter(
+      (data, i) => i % 200 === 0
+    );
+    setPolyPoints([...poly]);
+    const arr = [];
     const finalData = data.routes[0].geometry.coordinates
       .map((data, i) => {
         return { lat: data[1], lon: data[0] };
       })
       .filter((data, i) => {
-        return i % 100 === 0;
+        return i % 200 === 0;
       });
     console.log("cordinates", finalData);
     setCordinates([...finalData]);
     console.log("cordinates", cordinates);
     if (cordinates.length > 0) {
       let i = 0;
+      setLoading(true);
       for (i; i < cordinates.length; i++) {
-        console.log(
-          await getNearestLocation(cordinates[i].lat, cordinates[i].lon)
+        const res = await getNearestLocation(
+          cordinates[i].lat,
+          cordinates[i].lon
         );
+
+        arr.push(res);
       }
     }
+    console.log("polyPoints", attractions);
+    setLoading(false);
+    if (polyPoints.length > 0)
+      navigate("/plans", { state: { polyPoints, arr } });
   };
 
   const getNearestLocation = async (lat, lon) => {
@@ -67,7 +83,7 @@ const GetPath = () => {
         latitude: lat,
         lunit: "km",
         currency: "USD",
-        limit: 4,
+        limit: 1,
         lang: "en_US",
       },
       headers: {
@@ -129,6 +145,8 @@ const GetPath = () => {
       console.log("json", json);
     }
   };
+
+  if (loading) return <div>Loading...</div>;
 
   return (
     <div>

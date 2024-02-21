@@ -9,13 +9,17 @@ import Login from "./pages/Login";
 import Onboarding from "./pages/OnBoarding";
 import TripDetails from "./pages/TripDetails";
 import GetPath from "./pages/GetPath";
+import Plan from "./pages/Plan";
 
 const router = createBrowserRouter([
   {
     path: "/source-path",
     element: <GetPath />,
   },
-
+  {
+    path: "plans",
+    element: <Plan />,
+  },
   {
     path: "/onboarding",
     element: <Onboarding />,
