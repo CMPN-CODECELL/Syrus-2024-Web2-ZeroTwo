@@ -12,6 +12,8 @@ const GetPath = () => {
   const [sourceCity, setSourceCity] = useState("");
   const [destinationCity, setDestinationCity] = useState("");
   const [cordinates, setCordinates] = useState([]);
+  const [restaurents, setRestaurents] = useState([]);
+  const [attractions, setAttractions] = useState([]);
 
   useEffect(() => {
     getLocationName(source[1], source[0], setSourceCity);
@@ -31,20 +33,29 @@ const GetPath = () => {
     var url = `http://router.project-osrm.org/route/v1/driving/${source[1]},${source[0]};${destination[1]},${destination[0]}?steps=true&annotations=true&geometries=geojson&overview=full`;
 
     const mapBoxUrl =
-      "https://api.mapbox.com/directions/v5/mapbox/driving-traffic/-74.064693%2C40.691127%3B-73.900665%2C40.764918?alternatives=true&geometries=geojson&language=en&overview=full&steps=true&access_token=pk.eyJ1IjoiYXlhYW56YXZlcmkiLCJhIjoiY2ttZHVwazJvMm95YzJvcXM3ZTdta21rZSJ9.WMpQsXd5ur2gP8kFjpBo8g";
+      "https://api.mapbox.com/directions/v5/mapbox/driving/72.894434%2C19.049821%3B73.867274%2C18.470933?alternatives=true&geometries=geojson&language=en&overview=full&steps=true&access_token=pk.eyJ1IjoibXJ1bmFsMTIzNDU2Nzg5IiwiYSI6ImNsbWhzbWF2cTBzajAzcXIybTVoa3g1anQifQ.66Fu05Ii8-NVd-w-C-FSgA";
     const response = await fetch(mapBoxUrl);
     const data = await response.json();
+    console.log("data", data.routes[0].geometry.coordinates.length);
 
-    const finalData = data.waypoints.map((waypoint) => {
-      const { location } = waypoint;
-      return {
-        lat: location[1],
-        lon: location[0],
-      };
-    });
-    setCordinates(finalData);
+    const finalData = data.routes[0].geometry.coordinates
+      .map((data, i) => {
+        return { lat: data[1], lon: data[0] };
+      })
+      .filter((data, i) => {
+        return i % 100 === 0;
+      });
     console.log("cordinates", finalData);
-    await getNearestLocation(cordinates[0].lat, cordinates[0].lon);
+    setCordinates([...finalData]);
+    console.log("cordinates", cordinates);
+    if (cordinates.length > 0) {
+      let i = 0;
+      for (i; i < cordinates.length; i++) {
+        console.log(
+          await getNearestLocation(cordinates[i].lat, cordinates[i].lon)
+        );
+      }
+    }
   };
 
   const getNearestLocation = async (lat, lon) => {
@@ -67,7 +78,7 @@ const GetPath = () => {
 
     try {
       const response = await axios.request(options);
-      console.log("ews", response.data);
+      return response.data;
     } catch (error) {
       console.error(error);
     }
