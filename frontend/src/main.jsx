@@ -10,6 +10,7 @@ import Notfound from "./pages/NotFound.jsx";
 import { ClerkProvider } from "@clerk/clerk-react";
 import Home from "./pages/Home.jsx";
 import { dark } from "@clerk/themes";
+import PlanForm from "./components/PlanForm/PlanForm.jsx";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
     path: "*",
     element: <Notfound />,
   },
+  {
+    path: "planner",
+    element: <PlanForm />
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

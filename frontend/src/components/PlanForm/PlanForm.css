@@ -1,0 +1,116 @@
+* {
+  font-family: monospace;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: inherit;
+}
+body {
+  color: white;
+  height: 100svh;
+  background-color: #1f1f1f;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+main {
+  flex-grow: 1;
+  width: 100%;
+  display: flex;
+}
+main > div:first-child {
+  background-image: url("/public/itinerary.jpg");
+  background-position: 0 center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100svh;
+  width: 50%;
+}
+main > div:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 720px;
+}
+form {
+  flex-grow: 4;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-flow: row wrap;
+  padding: 72px;
+  gap: 24px;
+}
+form + div {
+  flex-grow: 1;
+  align-self: center;
+}
+div:has(> input) {
+  display: flex;
+  flex-direction: column-reverse;
+}
+input + label {
+  font-size: 16px;
+  padding-bottom: 8px;
+  display: none;
+}
+input {
+  color: black;
+  padding: 0 8px;
+  font-size: 20px;
+  border-radius: 6px;
+}
+input:invalid + label {
+  color: lightcoral;
+}
+input:valid + label {
+  color: lightgreen;
+}
+div > span,
+span + button {
+  font-size: 16px;
+}
+span + button {
+  border: none;
+  color: lightskyblue;
+}
+button {
+  background-color: transparent;
+  font-size: inherit;
+  font-size: 20px;
+  padding: 8px;
+  border-radius: 6px;
+}
+footer {
+  font-size: 16px;
+  color: white;
+  padding-bottom: 1vh;
+  text-align: center;
+  padding: 2vh;
+}
+@media (max-width: 576px) {
+  main {
+    flex-direction: column;
+    align-items: center;
+  }
+  main > div:nth-child(1) {
+    width: 100vw;
+    height: 100svh;
+    background-size: cover;
+  }
+  input {
+    width: 150%;
+    align-self: center;
+  }
+  button[type="submit"] {
+    align-self: center;
+  }
+}
+@media (max-width: 1176px) {
+  form {
+    flex-direction: column;
+  }
+  button[type="submit"] {
+    align-self: center;
+  }
+}
